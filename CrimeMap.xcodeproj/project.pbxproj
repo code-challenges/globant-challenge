@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		437055C01C21EFC400E9B2C9 /* Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437055BF1C21EFC400E9B2C9 /* Swift.swift */; };
+		437055C01C21EFC400E9B2C9 /* SODAAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437055BF1C21EFC400E9B2C9 /* SODAAPI.swift */; };
 		43D1948E1C21DFD400A3FDCE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D1948D1C21DFD400A3FDCE /* main.m */; };
 		43D194911C21DFD400A3FDCE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D194901C21DFD400A3FDCE /* AppDelegate.m */; };
 		43D194941C21DFD400A3FDCE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D194931C21DFD400A3FDCE /* ViewController.m */; };
@@ -38,7 +38,7 @@
 
 /* Begin PBXFileReference section */
 		3181C0263CCF13763947115B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		437055BF1C21EFC400E9B2C9 /* Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swift.swift; sourceTree = "<group>"; };
+		437055BF1C21EFC400E9B2C9 /* SODAAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SODAAPI.swift; sourceTree = "<group>"; };
 		43D194891C21DFD400A3FDCE /* CrimeMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrimeMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D1948D1C21DFD400A3FDCE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		43D1948F1C21DFD400A3FDCE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -116,7 +116,7 @@
 				43D194901C21DFD400A3FDCE /* AppDelegate.m */,
 				43D194921C21DFD400A3FDCE /* ViewController.h */,
 				43D194931C21DFD400A3FDCE /* ViewController.m */,
-				437055BF1C21EFC400E9B2C9 /* Swift.swift */,
+				437055BF1C21EFC400E9B2C9 /* SODAAPI.swift */,
 				43D194951C21DFD400A3FDCE /* Main.storyboard */,
 				43D194981C21DFD400A3FDCE /* Assets.xcassets */,
 				43D1949A1C21DFD400A3FDCE /* LaunchScreen.storyboard */,
@@ -353,7 +353,7 @@
 				43D194941C21DFD400A3FDCE /* ViewController.m in Sources */,
 				43D194911C21DFD400A3FDCE /* AppDelegate.m in Sources */,
 				43D1948E1C21DFD400A3FDCE /* main.m in Sources */,
-				437055C01C21EFC400E9B2C9 /* Swift.swift in Sources */,
+				437055C01C21EFC400E9B2C9 /* SODAAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
