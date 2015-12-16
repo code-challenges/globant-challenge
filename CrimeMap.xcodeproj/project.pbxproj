@@ -15,6 +15,7 @@
 		43D1949C1C21DFD400A3FDCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43D1949A1C21DFD400A3FDCE /* LaunchScreen.storyboard */; };
 		43D194A71C21DFD400A3FDCE /* CrimeMapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D194A61C21DFD400A3FDCE /* CrimeMapTests.m */; };
 		43D194B21C21DFD400A3FDCE /* CrimeMapUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D194B11C21DFD400A3FDCE /* CrimeMapUITests.m */; };
+		CDD5C05357B99E01A4356F9A /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3181C0263CCF13763947115B /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3181C0263CCF13763947115B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D194891C21DFD400A3FDCE /* CrimeMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrimeMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D1948D1C21DFD400A3FDCE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		43D1948F1C21DFD400A3FDCE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -52,6 +54,8 @@
 		43D194B11C21DFD400A3FDCE /* CrimeMapUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CrimeMapUITests.m; sourceTree = "<group>"; };
 		43D194B31C21DFD400A3FDCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43D194C51C21E29700A3FDCE /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
+		71842AD93A399062414C5895 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		E2A7959A46EE8B91378BB450 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDD5C05357B99E01A4356F9A /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +91,8 @@
 				43D194A51C21DFD400A3FDCE /* CrimeMapTests */,
 				43D194B01C21DFD400A3FDCE /* CrimeMapUITests */,
 				43D1948A1C21DFD400A3FDCE /* Products */,
+				DA68AD978A277AB4BB88B7C5 /* Pods */,
+				84911F3B55B6E2AD0CD49FC4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -142,6 +149,23 @@
 			path = CrimeMapUITests;
 			sourceTree = "<group>";
 		};
+		84911F3B55B6E2AD0CD49FC4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3181C0263CCF13763947115B /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DA68AD978A277AB4BB88B7C5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E2A7959A46EE8B91378BB450 /* Pods.debug.xcconfig */,
+				71842AD93A399062414C5895 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -149,9 +173,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 43D194B61C21DFD400A3FDCE /* Build configuration list for PBXNativeTarget "CrimeMap" */;
 			buildPhases = (
+				FA6AB94AB48CA82F3AF03F73 /* Check Pods Manifest.lock */,
 				43D194851C21DFD400A3FDCE /* Sources */,
 				43D194861C21DFD400A3FDCE /* Frameworks */,
 				43D194871C21DFD400A3FDCE /* Resources */,
+				F50A9D2F5836215643B0B845 /* Embed Pods Frameworks */,
+				95073F1A14919137BCF430EF /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -266,6 +293,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		95073F1A14919137BCF430EF /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F50A9D2F5836215643B0B845 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FA6AB94AB48CA82F3AF03F73 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		43D194851C21DFD400A3FDCE /* Sources */ = {
@@ -413,6 +488,7 @@
 		};
 		43D194B71C21DFD400A3FDCE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2A7959A46EE8B91378BB450 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CrimeMap/Info.plist;
@@ -424,6 +500,7 @@
 		};
 		43D194B81C21DFD400A3FDCE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71842AD93A399062414C5895 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CrimeMap/Info.plist;
