@@ -51,6 +51,7 @@
 		43D194AD1C21DFD400A3FDCE /* CrimeMapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrimeMapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D194B11C21DFD400A3FDCE /* CrimeMapUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CrimeMapUITests.m; sourceTree = "<group>"; };
 		43D194B31C21DFD400A3FDCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43D194C51C21E29700A3FDCE /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +102,7 @@
 		43D1948B1C21DFD400A3FDCE /* CrimeMap */ = {
 			isa = PBXGroup;
 			children = (
+				43D194C51C21E29700A3FDCE /* Playground.playground */,
 				43D1948F1C21DFD400A3FDCE /* AppDelegate.h */,
 				43D194901C21DFD400A3FDCE /* AppDelegate.m */,
 				43D194921C21DFD400A3FDCE /* ViewController.h */,
@@ -498,6 +500,7 @@
 				43D194B81C21DFD400A3FDCE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		43D194B91C21DFD400A3FDCE /* Build configuration list for PBXNativeTarget "CrimeMapTests" */ = {
 			isa = XCConfigurationList;
@@ -506,6 +509,7 @@
 				43D194BB1C21DFD400A3FDCE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		43D194BC1C21DFD400A3FDCE /* Build configuration list for PBXNativeTarget "CrimeMapUITests" */ = {
 			isa = XCConfigurationList;
@@ -514,6 +518,7 @@
 				43D194BE1C21DFD400A3FDCE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
