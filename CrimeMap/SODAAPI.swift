@@ -50,9 +50,9 @@ public typealias SODAAPIRequestManagerCompletionHandler = (NSArray, NSError?) ->
 
 public class EventRequestManager : SODAAPIRequestManager {
     
-    public convenience init(endpoint: NSString , limitOfObjectsPerPage: Int) {
+    public convenience init(endpoint: NSString , limitOfObjectsPerPage: Int, monthsBack: Int) {
         let now = NSDate().asString()
-        let aMonthAgo = NSDate().moveOnDate(-1).asString()
+        let aMonthAgo = NSDate().moveOnDate(-monthsBack).asString()
         let query = "$where=date < '\(now)' and date > '\(aMonthAgo)'"
         self.init(endpoint: endpoint, limitOfObjectsPerPage: limitOfObjectsPerPage, query: query)
     }

@@ -19,7 +19,7 @@ NSString *kEndpoint = @"https://data.sfgov.org/resource/ritf-b9ki.json?";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    EventRequestManager *eventRequestManager = [[EventRequestManager alloc] initWithEndpoint:kEndpoint limitOfObjectsPerPage:1];
+    EventRequestManager *eventRequestManager = [[EventRequestManager alloc] initWithEndpoint:kEndpoint limitOfObjectsPerPage:1 monthsBack:1];
     [eventRequestManager performRequestOnPage:0 completionHandler:^(NSArray * array, NSError * error) {
         
     }];
