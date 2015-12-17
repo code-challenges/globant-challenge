@@ -35,7 +35,7 @@ public class Event : NSObject {
     var x = Double()
     var y = Double()
     
-    public init(dictionary: NSDictionary) {
+    public init(dictionary: Dictionary<String, AnyObject>) {
         self.address = dictionary["address"] as? String
         self.category = dictionary["category"] as? String
         self.date = dictionary["date"] as? String

@@ -106,11 +106,9 @@ class MapViewController : UIViewController {
                 MapViewController.presentErrorMessage(error!, viewController: self, handler: retryRequest)
                 return
             }
-            for object in arrayOfEvents {
-                if let event = object as? Event {
-                    let eventAnnotation = EventAnnotation(event: event)
-                    self.mapView.addAnnotation(eventAnnotation)
-                }
+            for event in arrayOfEvents {
+                let eventAnnotation = EventAnnotation(event: event)
+                self.mapView.addAnnotation(eventAnnotation)
             }
         }
     }
