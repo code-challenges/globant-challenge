@@ -104,6 +104,7 @@ class MapViewController : UIViewController {
                     self.performRequestToAddAnnotations()
                 }
                 MapViewController.presentErrorMessage(error!, viewController: self, handler: retryRequest)
+                return
             }
             for object in arrayOfEvents {
                 if let event = object as? Event {
