@@ -17,7 +17,13 @@ extension NSDate {
     }
     
     //TODO: Fix this method
-    func dateForQuery() -> NSString {
-        return "2015-11-30T00:00:00"
+    func asString() -> NSString {
+        return "2015-03-23T00:00:00.000"
+    }
+}
+
+extension String {
+    func sanitizedString() -> String {
+        return self.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())!
     }
 }

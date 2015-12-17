@@ -48,6 +48,19 @@ class ObjectConverter : NSObject {
 
 public typealias SODAAPIRequestManagerCompletionHandler = (NSArray, NSError?) -> ()
 
+public class MyMockClass : NSObject {
+    public static func doStuff() {
+        let now = NSDate().asString()
+        let aMonthAgo = NSDate().moveOnDate(-1).asString()
+        let query = "$where=date < '\(now)' and date > '\(aMonthAgo)'"
+        let manager = SODAAPIRequestManager(endpoint: "https://data.sfgov.org/resource/ritf-b9ki.json?", limitOfObjectsPerPage: 1, query: query)
+        manager.performRequestOnPage(0) { (array, error ) -> () in
+            print(array)
+            print(error)
+        }
+    }
+}
+
 public class SODAAPIRequestManager: NSObject {
     
     private var endpoint : String?
@@ -71,13 +84,13 @@ public class SODAAPIRequestManager: NSObject {
         }
         
         let pageNumber = page
-        let paginationQuery = "$limit=\(self.limitOfObjectsPerPage)&$offset=\(pageNumber)&"
-        let sanitizedQuery = self.query?.stringByReplacingOccurrencesOfString(" ", withString: "%20")
+        let satinizedPaginationQuery = "$limit=\(self.limitOfObjectsPerPage)&$offset=\(pageNumber)".sanitizedString()
+        let sanitizedQuery = self.query?.sanitizedString()
         
-        var url = self.endpoint! + paginationQuery
+        var url = self.endpoint! + satinizedPaginationQuery
         
         if (sanitizedQuery != nil) {
-            url = url + sanitizedQuery!
+            url = url + "&" + sanitizedQuery!
         }
         
         let request = Alamofire.request(.GET, url)
@@ -98,7 +111,6 @@ public class SODAAPIRequestManager: NSObject {
             
             let error = NSError(domain: "CrimeMap.API", code: 0, userInfo: [ NSLocalizedDescriptionKey : "Received type is not handled"])
             completionHandler(NSArray(), error)
-            
             
         }
     }

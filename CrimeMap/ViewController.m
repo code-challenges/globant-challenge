@@ -17,12 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-    SODAAPIRequestManager *requestManager = [[SODAAPIRequestManager alloc] initWithEndpoint:@"https://data.sfgov.org/resource/ritf-b9ki.json?"
-                                                                      limitOfObjectsPerPage:1
-                                                                                      query:@""];
-    [requestManager performRequestOnPage:0 completionHandler:^(NSArray * array, NSError * error) {
-        
-    }];
+    [MyMockClass doStuff];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
