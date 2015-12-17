@@ -17,37 +17,37 @@ struct Address {
 
 struct Location {
     var humanAddress = Address()
-    var latitude = NSString()
-    var longitude = NSString()
+    var latitude = String()
+    var longitude = String()
     var needsRecording = Bool()
 }
 
 public class Event : NSObject {
-    var address : NSString?
-    var category : NSString?
-    var date : NSString?
-    var dayOfTheWeek : NSString?
-    var incidentNumber : NSString?
+    var address : String?
+    var category : String?
+    var date : String?
+    var dayOfTheWeek : String?
+    var incidentNumber : String?
     var location = Location()
-    var pddistrict : NSString?
-    var resolution : NSString?
-    var time : NSString?
+    var pddistrict : String?
+    var resolution : String?
+    var time : String?
     var x = Double()
     var y = Double()
     
     public init(dictionary: NSDictionary) {
-        self.address = dictionary["address"] as? NSString
-        self.category = dictionary["category"] as? NSString
-        self.date = dictionary["date"] as? NSString
-        self.dayOfTheWeek = dictionary["dayofweek"] as? NSString
-        self.incidentNumber = dictionary["incidntnum"] as? NSString
+        self.address = dictionary["address"] as? String
+        self.category = dictionary["category"] as? String
+        self.date = dictionary["date"] as? String
+        self.dayOfTheWeek = dictionary["dayofweek"] as? String
+        self.incidentNumber = dictionary["incidntnum"] as? String
         self.location = Location()
-        self.location.latitude = dictionary["location"]!["latitude"] as! NSString
-        self.location.longitude = dictionary["location"]!["longitude"] as! NSString
+        self.location.latitude = dictionary["location"]!["latitude"] as! String
+        self.location.longitude = dictionary["location"]!["longitude"] as! String
         self.location.needsRecording = dictionary["location"]!["needs_recoding"] as! Bool
-        self.pddistrict = dictionary["pddistrict"] as? NSString
-        self.resolution = dictionary["resolution"] as? NSString
-        self.time = dictionary["time"] as? NSString
+        self.pddistrict = dictionary["pddistrict"] as? String
+        self.resolution = dictionary["resolution"] as? String
+        self.time = dictionary["time"] as? String
         self.x = Double(dictionary["x"] as! String)!
         self.y = Double(dictionary["y"] as! String)!
         super.init()

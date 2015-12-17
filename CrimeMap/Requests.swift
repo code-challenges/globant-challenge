@@ -18,7 +18,7 @@ private extension NSDate {
         return gregorian!.dateByAddingComponents(offset, toDate: self, options: .MatchStrictly)!
     }
     
-    func asString() -> NSString {
+    func asString() -> String {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-ddTHH:mm:ss"
         return dateFormatter.stringFromDate(self)
@@ -35,7 +35,7 @@ public typealias SODAAPIRequestManagerCompletionHandler = (NSArray, NSError?) ->
 
 public class EventRequestManager : SODAAPIRequestManager {
     
-    public convenience init(endpoint: NSString , limitOfObjectsPerPage: Int, monthsBack: Int) {
+    public convenience init(endpoint: String , limitOfObjectsPerPage: Int, monthsBack: Int) {
         let now = NSDate().asString()
         let aMonthAgo = NSDate().moveOnDate(-monthsBack).asString()
         let query = "$where=date < '\(now)' and date > '\(aMonthAgo)'"
@@ -71,7 +71,7 @@ public class SODAAPIRequestManager: NSObject {
         assertionFailure("You shouldn't call SODAAPIRequestManager.init directly")
     }
     
-    public init(endpoint : NSString, limitOfObjectsPerPage : Int, query : NSString ) {
+    public init(endpoint : String, limitOfObjectsPerPage : Int, query : String ) {
         super.init()
         self.endpoint = String(endpoint)
         self.limitOfObjectsPerPage = limitOfObjectsPerPage
