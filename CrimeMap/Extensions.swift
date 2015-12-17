@@ -16,9 +16,10 @@ extension NSDate {
         return gregorian!.dateByAddingComponents(offset, toDate: self, options: .MatchStrictly)!
     }
     
-    //TODO: Fix this method
     func asString() -> NSString {
-        return "2015-03-23T00:00:00.000"
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-ddTHH:mm:ss"
+        return dateFormatter.stringFromDate(self)
     }
 }
 
