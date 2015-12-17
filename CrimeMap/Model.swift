@@ -22,7 +22,7 @@ struct Location {
     var needsRecording = Bool()
 }
 
-struct Event {
+public class Event : NSObject {
     var address = NSString()
     var category = NSString()
     var date = NSString()
@@ -34,4 +34,22 @@ struct Event {
     var time = NSString()
     var x = NSString()
     var y = NSString()
+    
+    public init(dictionary: NSDictionary) {
+        self.address = dictionary["address"] as! NSString
+        self.category = dictionary["category"] as! NSString
+        self.date = dictionary["date"] as! NSString
+        self.dayOfTheWeek = dictionary["dayofweek"] as! NSString
+        self.incidentNumber = dictionary["incidntnum"] as! NSString
+        self.location = Location()
+        self.location.latitude = dictionary["location"]!["latitude"] as! NSString
+        self.location.longitude = dictionary["location"]!["longitude"] as! NSString
+        self.location.needsRecording = dictionary["location"]!["needs_recoding"] as! Bool
+        self.pddistrict = dictionary["pddistrict"] as! NSString
+        self.resolution = dictionary["resolution"] as! NSString
+        self.time = dictionary["time"] as! NSString
+        self.x = dictionary["x"] as! NSString
+        self.y = dictionary["y"] as! NSString
+        super.init()
+    }
 }
