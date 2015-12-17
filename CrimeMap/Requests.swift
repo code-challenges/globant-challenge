@@ -10,6 +10,27 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
+extension NSDate {
+    func moveOnDate(monthOffset : Int) -> NSDate {
+        let gregorian = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
+        let offset = NSDateComponents()
+        offset.month = monthOffset
+        return gregorian!.dateByAddingComponents(offset, toDate: self, options: .MatchStrictly)!
+    }
+    
+    func asString() -> NSString {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-ddTHH:mm:ss"
+        return dateFormatter.stringFromDate(self)
+    }
+}
+
+extension String {
+    func sanitizedString() -> String {
+        return self.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())!
+    }
+}
+
 public typealias SODAAPIRequestManagerCompletionHandler = (NSArray, NSError?) -> ()
 
 public class EventRequestManager : SODAAPIRequestManager {
