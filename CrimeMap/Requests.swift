@@ -44,6 +44,11 @@ public class EventRequestManager : SODAAPIRequestManager {
     
     override public func performRequestOnPage(page: Int, completionHandler: SODAAPIRequestManagerCompletionHandler) {
         super.performRequestOnPage(page) { (array, error) -> () in
+            if error != nil {
+                completionHandler(NSArray(), error)
+                return
+            }
+            
             let eventArray = NSMutableArray()
             for object in array {
                 if let dictionary = object as? NSDictionary {
