@@ -117,7 +117,7 @@ class MapViewController : UIViewController {
     
     static func presentErrorMessage(error: NSError, viewController: UIViewController, handler: () -> () ) {
         let alert = UIAlertController(title: "Sorry", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
-        let action = UIAlertAction(title: "Retry", style: .Default) { (alertAction) -> Void in
+        let action = UIAlertAction(title: "Retry", style: .Default) { (_) -> Void in
             handler()
         }
         alert.addAction(action)
