@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -35,18 +34,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="4kc-3v-7ro">
-                                <rect key="frame" x="20" y="20" width="560" height="580"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="4kc-3v-7ro">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <animations/>
                             </mapView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="4kc-3v-7ro" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Ekp-Vu-ef3"/>
-                            <constraint firstItem="4kc-3v-7ro" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Lix-Hx-gWY"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4kc-3v-7ro" secondAttribute="bottom" id="Wbg-lL-thb"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="4kc-3v-7ro" secondAttribute="trailing" id="rDH-Mp-45z"/>
+                            <constraint firstAttribute="trailing" secondItem="4kc-3v-7ro" secondAttribute="trailing" id="GlZ-pc-QWG"/>
+                            <constraint firstItem="4kc-3v-7ro" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="cdW-7y-OlJ"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4kc-3v-7ro" secondAttribute="bottom" id="fYw-Mk-ouW"/>
+                            <constraint firstItem="4kc-3v-7ro" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="t9u-wG-xrW"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="u8f-3a-qDm"/>
@@ -56,6 +55,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="310" y="312"/>
         </scene>
     </scenes>
 </document>
