@@ -26,12 +26,12 @@ class ObjectConverter : NSObject {
         event.incidentNumber = dictionary["incidntnum"] as! NSString
         event.location = Location()
         
-        let humanAddressDictionary = dictionary["location"]!["human_address"] as! NSDictionary
-        event.location.humanAddress = Address()
-        event.location.humanAddress.address = humanAddressDictionary["address"] as! NSString
-        event.location.humanAddress.city = humanAddressDictionary["city"] as! NSString
-        event.location.humanAddress.state = humanAddressDictionary["state"] as! NSString
-        event.location.humanAddress.zip = humanAddressDictionary["zip"] as! NSString
+//        let humanAddressDictionary = dictionary["location"]!["human_address"] as! NSDictionary
+//        event.location.humanAddress = Address()
+//        event.location.humanAddress.address = humanAddressDictionary["address"] as! NSString
+//        event.location.humanAddress.city = humanAddressDictionary["city"] as! NSString
+//        event.location.humanAddress.state = humanAddressDictionary["state"] as! NSString
+//        event.location.humanAddress.zip = humanAddressDictionary["zip"] as! NSString
         event.location.latitude = dictionary["location"]!["latitude"] as! NSString
         event.location.longitude = dictionary["location"]!["longitude"] as! NSString
         event.location.needsRecording = dictionary["location"]!["needs_recoding"] as! Bool
@@ -46,7 +46,7 @@ class ObjectConverter : NSObject {
     
 }
 
-public typealias SODAAPIRequestManagerCompletionHandler = (NSArray) -> ()
+public typealias SODAAPIRequestManagerCompletionHandler = (NSArray, NSError?) -> ()
 
 public class SODAAPIRequestManager: NSObject {
     
@@ -83,9 +83,23 @@ public class SODAAPIRequestManager: NSObject {
         let request = Alamofire.request(.GET, url)
         
         request.responseJSON { response in
+            
+            if response.result.isFailure {
+                completionHandler( NSArray(), response.result.error!)
+                return
+            }
+            
             let json = JSON(response.result.value!)
-            let responseArray = json.rawValue as! NSArray
-            completionHandler(responseArray)
+            
+            if let responseArray = json.rawValue as? NSArray {
+                completionHandler(responseArray, nil)
+                return
+            }
+            
+            let error = NSError(domain: "CrimeMap.API", code: 0, userInfo: [ NSLocalizedDescriptionKey : "Received type is not handled"])
+            completionHandler(NSArray(), error)
+            
+            
         }
     }
 }
