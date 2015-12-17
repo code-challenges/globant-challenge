@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <CrimeMap-Swift.h>
 
 @interface AppDelegate ()
 

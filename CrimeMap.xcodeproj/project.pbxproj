@@ -13,7 +13,6 @@
 		437055CD1C23366A00E9B2C9 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437055CC1C23366A00E9B2C9 /* Map.swift */; };
 		43D1948E1C21DFD400A3FDCE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D1948D1C21DFD400A3FDCE /* main.m */; };
 		43D194911C21DFD400A3FDCE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D194901C21DFD400A3FDCE /* AppDelegate.m */; };
-		43D194941C21DFD400A3FDCE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D194931C21DFD400A3FDCE /* ViewController.m */; };
 		43D194971C21DFD400A3FDCE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43D194951C21DFD400A3FDCE /* Main.storyboard */; };
 		43D194991C21DFD400A3FDCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43D194981C21DFD400A3FDCE /* Assets.xcassets */; };
 		43D1949C1C21DFD400A3FDCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43D1949A1C21DFD400A3FDCE /* LaunchScreen.storyboard */; };
@@ -49,8 +48,6 @@
 		43D1948D1C21DFD400A3FDCE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		43D1948F1C21DFD400A3FDCE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		43D194901C21DFD400A3FDCE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		43D194921C21DFD400A3FDCE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		43D194931C21DFD400A3FDCE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		43D194961C21DFD400A3FDCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		43D194981C21DFD400A3FDCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43D1949B1C21DFD400A3FDCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -120,8 +117,6 @@
 				43D194C51C21E29700A3FDCE /* Playground.playground */,
 				43D1948F1C21DFD400A3FDCE /* AppDelegate.h */,
 				43D194901C21DFD400A3FDCE /* AppDelegate.m */,
-				43D194921C21DFD400A3FDCE /* ViewController.h */,
-				43D194931C21DFD400A3FDCE /* ViewController.m */,
 				437055CC1C23366A00E9B2C9 /* Map.swift */,
 				437055BF1C21EFC400E9B2C9 /* Requests.swift */,
 				437055C11C2211DB00E9B2C9 /* Model.swift */,
@@ -361,7 +356,6 @@
 			files = (
 				437055C21C2211DB00E9B2C9 /* Model.swift in Sources */,
 				437055C41C22121900E9B2C9 /* Extensions.swift in Sources */,
-				43D194941C21DFD400A3FDCE /* ViewController.m in Sources */,
 				437055CD1C23366A00E9B2C9 /* Map.swift in Sources */,
 				43D194911C21DFD400A3FDCE /* AppDelegate.m in Sources */,
 				43D1948E1C21DFD400A3FDCE /* main.m in Sources */,
