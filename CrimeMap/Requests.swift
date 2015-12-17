@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-extension NSDate {
+private extension NSDate {
     func moveOnDate(monthOffset : Int) -> NSDate {
         let gregorian = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
         let offset = NSDateComponents()
@@ -25,7 +25,7 @@ extension NSDate {
     }
 }
 
-extension String {
+private extension String {
     func sanitizedString() -> String {
         return self.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())!
     }
