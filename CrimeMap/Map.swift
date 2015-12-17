@@ -78,7 +78,6 @@ extension MapViewController: MKMapViewDelegate {
             } else {
                 view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
-//                view.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
             }
             return view
         }
@@ -93,18 +92,34 @@ class MapViewController : UIViewController {
     override func viewDidLoad() {
         self.title = "CrimeMap"
         mapView.centerMapOnLocation(sanFranciscoLocation, radius: regionRadius)
-        
-        let requestManager = EventRequestManager(endpoint: endpoint, limitOfObjectsPerPage: 11, monthsBack: 1)
-        requestManager.performRequestOnPage(0) { (array, error) -> () in
-            for object in array {
+        mapView.delegate = self
+        self.performRequestToAddAnnotations()
+    }
+    
+    func performRequestToAddAnnotations() {
+        let requestManager = EventRequestManager(endpoint: endpoint, limitOfObjectsPerPage: 10, monthsBack: 1)
+        requestManager.performRequestOnPage(0) { (arrayOfEvents, error) -> () in
+            if (error != nil) {
+                let retryRequest = { () -> () in
+                    self.performRequestToAddAnnotations()
+                }
+                MapViewController.presentErrorMessage(error!, viewController: self, handler: retryRequest)
+            }
+            for object in arrayOfEvents {
                 if let event = object as? Event {
                     let eventAnnotation = EventAnnotation(event: event)
                     self.mapView.addAnnotation(eventAnnotation)
                 }
             }
         }
-        
-        mapView.delegate = self;
     }
-
+    
+    static func presentErrorMessage(error: NSError, viewController: UIViewController, handler: () -> () ) {
+        let alert = UIAlertController(title: "Sorry", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+        let action = UIAlertAction(title: "Retry", style: .Default) { (alertAction) -> Void in
+            handler()
+        }
+        alert.addAction(action)
+        viewController.presentViewController(alert, animated: true, completion: nil)
+    }
 }
