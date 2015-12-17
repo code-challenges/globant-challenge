@@ -10,6 +10,7 @@
 		437055C01C21EFC400E9B2C9 /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437055BF1C21EFC400E9B2C9 /* Requests.swift */; };
 		437055C21C2211DB00E9B2C9 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437055C11C2211DB00E9B2C9 /* Model.swift */; };
 		437055C41C22121900E9B2C9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437055C31C22121900E9B2C9 /* Extensions.swift */; };
+		437055CD1C23366A00E9B2C9 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437055CC1C23366A00E9B2C9 /* Map.swift */; };
 		43D1948E1C21DFD400A3FDCE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D1948D1C21DFD400A3FDCE /* main.m */; };
 		43D194911C21DFD400A3FDCE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D194901C21DFD400A3FDCE /* AppDelegate.m */; };
 		43D194941C21DFD400A3FDCE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D194931C21DFD400A3FDCE /* ViewController.m */; };
@@ -43,6 +44,7 @@
 		437055BF1C21EFC400E9B2C9 /* Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
 		437055C11C2211DB00E9B2C9 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		437055C31C22121900E9B2C9 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		437055CC1C23366A00E9B2C9 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		43D194891C21DFD400A3FDCE /* CrimeMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrimeMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D1948D1C21DFD400A3FDCE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		43D1948F1C21DFD400A3FDCE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				43D194901C21DFD400A3FDCE /* AppDelegate.m */,
 				43D194921C21DFD400A3FDCE /* ViewController.h */,
 				43D194931C21DFD400A3FDCE /* ViewController.m */,
+				437055CC1C23366A00E9B2C9 /* Map.swift */,
 				437055BF1C21EFC400E9B2C9 /* Requests.swift */,
 				437055C11C2211DB00E9B2C9 /* Model.swift */,
 				437055C31C22121900E9B2C9 /* Extensions.swift */,
@@ -359,6 +362,7 @@
 				437055C21C2211DB00E9B2C9 /* Model.swift in Sources */,
 				437055C41C22121900E9B2C9 /* Extensions.swift in Sources */,
 				43D194941C21DFD400A3FDCE /* ViewController.m in Sources */,
+				437055CD1C23366A00E9B2C9 /* Map.swift in Sources */,
 				43D194911C21DFD400A3FDCE /* AppDelegate.m in Sources */,
 				43D1948E1C21DFD400A3FDCE /* main.m in Sources */,
 				437055C01C21EFC400E9B2C9 /* Requests.swift in Sources */,

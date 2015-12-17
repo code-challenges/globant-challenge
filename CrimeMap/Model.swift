@@ -32,8 +32,8 @@ public class Event : NSObject {
     var pddistrict = NSString()
     var resolution = NSString()
     var time = NSString()
-    var x = NSString()
-    var y = NSString()
+    var x = Double()
+    var y = Double()
     
     public init(dictionary: NSDictionary) {
         self.address = dictionary["address"] as! NSString
@@ -48,8 +48,8 @@ public class Event : NSObject {
         self.pddistrict = dictionary["pddistrict"] as! NSString
         self.resolution = dictionary["resolution"] as! NSString
         self.time = dictionary["time"] as! NSString
-        self.x = dictionary["x"] as! NSString
-        self.y = dictionary["y"] as! NSString
+        self.x = Double(dictionary["x"] as! String)!
+        self.y = Double(dictionary["y"] as! String)!
         super.init()
     }
 }
