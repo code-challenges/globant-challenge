@@ -48,16 +48,13 @@ class ObjectConverter : NSObject {
 
 public typealias SODAAPIRequestManagerCompletionHandler = (NSArray, NSError?) -> ()
 
-public class MyMockClass : NSObject {
-    public static func doStuff() {
+public class EventRequestManager : SODAAPIRequestManager {
+    
+    public convenience init(endpoint: NSString , limitOfObjectsPerPage: Int) {
         let now = NSDate().asString()
         let aMonthAgo = NSDate().moveOnDate(-1).asString()
         let query = "$where=date < '\(now)' and date > '\(aMonthAgo)'"
-        let manager = SODAAPIRequestManager(endpoint: "https://data.sfgov.org/resource/ritf-b9ki.json?", limitOfObjectsPerPage: 1, query: query)
-        manager.performRequestOnPage(0) { (array, error ) -> () in
-            print(array)
-            print(error)
-        }
+        self.init(endpoint: endpoint, limitOfObjectsPerPage: limitOfObjectsPerPage, query: query)
     }
 }
 

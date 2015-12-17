@@ -8,6 +8,9 @@
 
 #import "ViewController.h"
 #import <CrimeMap-Swift.h>
+
+NSString *kEndpoint = @"https://data.sfgov.org/resource/ritf-b9ki.json?";
+
 @interface ViewController ()
 
 @end
@@ -16,8 +19,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
-    [MyMockClass doStuff];
+    EventRequestManager *eventRequestManager = [[EventRequestManager alloc] initWithEndpoint:kEndpoint limitOfObjectsPerPage:1];
+    [eventRequestManager performRequestOnPage:0 completionHandler:^(NSArray * array, NSError * error) {
+        
+    }];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
