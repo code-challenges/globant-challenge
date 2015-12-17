@@ -98,7 +98,7 @@ class MapViewController : UIViewController {
     
     func performRequestToAddAnnotations() {
         let requestManager = EventRequestManager(endpoint: endpoint, limitOfObjectsPerPage: 10, monthsBack: 1)
-        requestManager.performRequestOnPage(0) { (arrayOfEvents, error) -> () in
+        requestManager.performRequestOnPage(0) { [unowned self] (arrayOfEvents, error) -> () in
             if (error != nil) {
                 let retryRequest = { () -> () in
                     self.performRequestToAddAnnotations()
