@@ -38,8 +38,8 @@ class EventRequestManager : SODAAPIRequestManager {
     
     convenience init(endpoint: String , limitOfObjectsPerPage: Int, monthsBack: Int) {
         let now = NSDate().asString()
-        let aMonthAgo = NSDate().moveOnDate(-monthsBack).asString()
-        let query = "$where=date < '\(now)' and date > '\(aMonthAgo)'"
+        let monthsAgo = NSDate().moveOnDate(-monthsBack).asString()
+        let query = "$where=date < '\(now)' and date > '\(monthsAgo)'"
         self.init(endpoint: endpoint, limitOfObjectsPerPage: limitOfObjectsPerPage, query: query)
     }
     
