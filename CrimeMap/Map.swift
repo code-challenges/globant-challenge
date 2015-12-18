@@ -8,6 +8,7 @@
 
 import Foundation
 import MapKit
+import LCCoolHUD
 
 let sanFranciscoLocation = CLLocation(latitude: 37.7833, longitude: -122.4167)
 let regionRadius: CLLocationDistance = 10000
@@ -30,7 +31,6 @@ extension UIAlertController {
     }
 }
 
-
 class MapViewController : UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
@@ -41,9 +41,16 @@ class MapViewController : UIViewController, MKMapViewDelegate {
         self.title = "CrimeMap"
         mapView.centerMapOnLocation(sanFranciscoLocation, radius: regionRadius)
         mapView.delegate = self
+        LCCoolHUD.showLoading("Loading")
         self.dataSource.getMoreEvents { (eventArray, error) -> () in
-            let annotations = EventAnnotationFactory.getAnnotations(eventArray)
-            self.mapView.addAnnotations(annotations)
+            LCCoolHUD.hideInKeyWindow()
+            if error == nil {
+                let annotations = EventAnnotationFactory.getAnnotations(eventArray)
+                self.mapView.addAnnotations(annotations)
+            }
+            else {
+                LCCoolHUD.showFailure("Failure", inView: self.view, zoom: true, shadow: true)
+            }
         }
     }
     
@@ -62,5 +69,9 @@ class MapViewController : UIViewController, MKMapViewDelegate {
             return view
         }
         return nil
+    }
+    
+    func mapView(mapView: MKMapView, viewForOverlay overlay: MKOverlay) -> MKOverlayView {
+        return MKOverlayView()
     }
 }
