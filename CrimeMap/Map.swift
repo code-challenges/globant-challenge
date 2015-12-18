@@ -31,28 +31,7 @@ extension UIAlertController {
     }
 }
 
-class MapViewController : UIViewController, MKMapViewDelegate {
-    
-    @IBOutlet weak var mapView: MKMapView!
-
-    var dataSource = EventsDataSource()
-    
-    override func viewDidLoad() {
-        self.title = "CrimeMap"
-        mapView.centerMapOnLocation(sanFranciscoLocation, radius: regionRadius)
-        mapView.delegate = self
-        LCCoolHUD.showLoading("Loading")
-        self.dataSource.getMoreEvents { (eventArray, error) -> () in
-            LCCoolHUD.hideInKeyWindow()
-            if error == nil {
-                let annotations = EventAnnotationFactory.getAnnotations(eventArray)
-                self.mapView.addAnnotations(annotations)
-            }
-            else {
-                LCCoolHUD.showFailure("Failure", inView: self.view, zoom: true, shadow: true)
-            }
-        }
-    }
+class MapViewDelegate : NSObject, MKMapViewDelegate {
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? EventAnnotation {
@@ -64,14 +43,46 @@ class MapViewController : UIViewController, MKMapViewDelegate {
             } else {
                 view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
-                view.pinTintColor = annotation.color
             }
+            view.pinTintColor = annotation.color
             return view
         }
         return nil
     }
+}
+
+class MapViewController : UIViewController {
     
-    func mapView(mapView: MKMapView, viewForOverlay overlay: MKOverlay) -> MKOverlayView {
-        return MKOverlayView()
+    @IBOutlet weak var mapView: MKMapView!
+
+    var dataSource = EventsDataSource()
+    var mapViewDelegate = MapViewDelegate()
+    
+    override func viewDidLoad() {
+        self.title = "CrimeMap"
+        mapView.centerMapOnLocation(sanFranciscoLocation, radius: regionRadius)
+        mapView.delegate = self.mapViewDelegate
+        self.loadItems()
     }
+    
+    @IBAction func refresh(sender: AnyObject) {
+        self.loadItems()
+    }
+    
+    func loadItems () {
+        LCCoolHUD.showLoading("Loading")
+        self.dataSource.getMoreEvents { (eventArray, error) -> () in
+            LCCoolHUD.hideInKeyWindow()
+            if error == nil {
+                let annotations = EventAnnotationFactory.getAnnotations(eventArray)
+                self.mapView.removeAnnotations(self.mapView.annotations)
+                self.mapView.addAnnotations(annotations)
+            }
+            else {
+                LCCoolHUD.showFailure(error?.localizedDescription, inView: self.view, zoom: false, shadow: true)
+            }
+        }
+    }
+    
+
 }

@@ -46,6 +46,9 @@ class EventAnnotationFactory : NSObject {
     }
     
     static func color(events : Array<EventSet>, eventSet : EventSet, colorArray : Array<UIColor>) -> UIColor {
+        if events.count == 1 {
+            return colorArray.first!
+        }
         let index = events.indexOf(eventSet)
         var colorIndex = Int(Float(index!) / Float(events.count - 1) * Float(colors.count))
         if (colorIndex == colorArray.count ){

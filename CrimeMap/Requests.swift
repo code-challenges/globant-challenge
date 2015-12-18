@@ -31,8 +31,8 @@ private extension String {
     }
 }
 
-public typealias EventRequestManagerCompletionHandler = (Set<Event>, NSError?) -> ()
-public typealias SODAAPIRequestManagerCompletionHandler = (Array<Dictionary<String,AnyObject>>, NSError?) -> ()
+typealias EventRequestManagerCompletionHandler = (Set<Event>, NSError?) -> ()
+typealias SODAAPIRequestManagerCompletionHandler = (Array<Dictionary<String,AnyObject>>, NSError?) -> ()
 
 class EventRequestManager : SODAAPIRequestManager {
     
