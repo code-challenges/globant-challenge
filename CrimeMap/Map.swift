@@ -86,27 +86,26 @@ class EventAnnotation : NSObject, MKAnnotation {
 }
 
 typealias GetEventsHandler = EventRequestManagerCompletionHandler
+typealias DataSourceCompletedRetrievalFromPage = (EventsByDistrictDictionary, NSError?) -> ()
+typealias EventsByDistrictDictionary = Dictionary<String, Array<Event>>
 
 class MapViewDataSource : NSObject {
     
-    var eventsByDistrict = Dictionary<String, Array<Event>>()
+    private var eventsByDistrict = EventsByDistrictDictionary()
     
-    private let requestManager = EventRequestManager(endpoint: endpoint, limitOfObjectsPerPage: 1, monthsBack: 1)
+    private let requestManager = EventRequestManager(endpoint: endpoint, limitOfObjectsPerPage: 10, monthsBack: 10)
     
-    func startRetrivingEvents() {
-        //WIP
-    }
-    
-    func performRequestToGetEvents(page: Int, handler: GetEventsHandler ) {
-        requestManager.performRequestOnPage(page) { (events, error) -> () in
+    func performRequestToGetEventsOrderedByDistrict(page: Int, handler: DataSourceCompletedRetrievalFromPage ) {
+        
+        self.requestManager.performRequestOnPage(page) { (events, error) -> () in
+            
+            if (error != nil) {
+                handler(self.eventsByDistrict, error)
+                return;
+            }
+        
             for event in events {
-                
-                handler(Array(), error)
-                
-                if (error != nil) {
-                    return;
-                }
-                
+            
                 var eventsOfDistrict = self.eventsByDistrict[event.pddistrict!]
 
                 if eventsOfDistrict == nil {
@@ -117,6 +116,8 @@ class MapViewDataSource : NSObject {
                 
                 self.eventsByDistrict[event.pddistrict!] = eventsOfDistrict
             }
+            
+            handler(self.eventsByDistrict, error)
         }
     }
 }
@@ -132,7 +133,11 @@ class MapViewController : UIViewController, MKMapViewDelegate {
         self.title = "CrimeMap"
         mapView.centerMapOnLocation(sanFranciscoLocation, radius: regionRadius)
         mapView.delegate = self
-//        self.performRequestToAddAnnotations()
+        dataSource.performRequestToGetEventsOrderedByDistrict(0) { ( eventsByDistrictDictionary, error) -> () in
+            for district in eventsByDistrictDictionary {
+                print(district)
+            }
+        }
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
