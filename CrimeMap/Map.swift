@@ -85,12 +85,39 @@ class EventAnnotation : NSObject, MKAnnotation {
     
 }
 
+typealias GetEventsHandler = EventRequestManagerCompletionHandler
+
 class MapViewDataSource : NSObject {
     
     var eventsByDistrict = Dictionary<String, Array<Event>>()
     
-    func performRequestToGetEvents() {
-        
+    private let requestManager = EventRequestManager(endpoint: endpoint, limitOfObjectsPerPage: 1, monthsBack: 1)
+    
+    func startRetrivingEvents() {
+        //WIP
+    }
+    
+    func performRequestToGetEvents(page: Int, handler: GetEventsHandler ) {
+        requestManager.performRequestOnPage(page) { (events, error) -> () in
+            for event in events {
+                
+                handler(Array(), error)
+                
+                if (error != nil) {
+                    return;
+                }
+                
+                var eventsOfDistrict = self.eventsByDistrict[event.pddistrict!]
+
+                if eventsOfDistrict == nil {
+                    eventsOfDistrict = [event]
+                } else {
+                    eventsOfDistrict?.append(event)
+                }
+                
+                self.eventsByDistrict[event.pddistrict!] = eventsOfDistrict
+            }
+        }
     }
 }
 
