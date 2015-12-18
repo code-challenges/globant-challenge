@@ -8,9 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		437055C01C21EFC400E9B2C9 /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437055BF1C21EFC400E9B2C9 /* Requests.swift */; };
-		437055C21C2211DB00E9B2C9 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437055C11C2211DB00E9B2C9 /* Model.swift */; };
 		437055CD1C23366A00E9B2C9 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437055CC1C23366A00E9B2C9 /* Map.swift */; };
 		437055CF1C246D0A00E9B2C9 /* EventsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437055CE1C246D0A00E9B2C9 /* EventsDataSource.swift */; };
+		437055D11C2474AA00E9B2C9 /* EventAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437055D01C2474AA00E9B2C9 /* EventAnnotation.swift */; };
+		437055D31C2474FC00E9B2C9 /* EventAnnotationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437055D21C2474FC00E9B2C9 /* EventAnnotationFactory.swift */; };
+		437055D51C24753300E9B2C9 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437055D41C24753300E9B2C9 /* Event.swift */; };
+		437055D71C24753D00E9B2C9 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437055D61C24753D00E9B2C9 /* Location.swift */; };
+		437055D91C24754B00E9B2C9 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437055D81C24754B00E9B2C9 /* Address.swift */; };
 		43D1948E1C21DFD400A3FDCE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D1948D1C21DFD400A3FDCE /* main.m */; };
 		43D194911C21DFD400A3FDCE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D194901C21DFD400A3FDCE /* AppDelegate.m */; };
 		43D194971C21DFD400A3FDCE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43D194951C21DFD400A3FDCE /* Main.storyboard */; };
@@ -41,9 +45,13 @@
 /* Begin PBXFileReference section */
 		3181C0263CCF13763947115B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		437055BF1C21EFC400E9B2C9 /* Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
-		437055C11C2211DB00E9B2C9 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		437055CC1C23366A00E9B2C9 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		437055CE1C246D0A00E9B2C9 /* EventsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsDataSource.swift; sourceTree = "<group>"; };
+		437055D01C2474AA00E9B2C9 /* EventAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventAnnotation.swift; sourceTree = "<group>"; };
+		437055D21C2474FC00E9B2C9 /* EventAnnotationFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventAnnotationFactory.swift; sourceTree = "<group>"; };
+		437055D41C24753300E9B2C9 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		437055D61C24753D00E9B2C9 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		437055D81C24754B00E9B2C9 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		43D194891C21DFD400A3FDCE /* CrimeMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrimeMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D1948D1C21DFD400A3FDCE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		43D1948F1C21DFD400A3FDCE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -89,6 +97,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		437055DA1C24759E00E9B2C9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				437055D41C24753300E9B2C9 /* Event.swift */,
+				437055D61C24753D00E9B2C9 /* Location.swift */,
+				437055D81C24754B00E9B2C9 /* Address.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		437055DB1C2475BD00E9B2C9 /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				437055BF1C21EFC400E9B2C9 /* Requests.swift */,
+			);
+			name = Requests;
+			sourceTree = "<group>";
+		};
 		43D194801C21DFD400A3FDCE = {
 			isa = PBXGroup;
 			children = (
@@ -118,9 +144,11 @@
 				43D1948F1C21DFD400A3FDCE /* AppDelegate.h */,
 				43D194901C21DFD400A3FDCE /* AppDelegate.m */,
 				437055CC1C23366A00E9B2C9 /* Map.swift */,
+				437055D01C2474AA00E9B2C9 /* EventAnnotation.swift */,
 				437055CE1C246D0A00E9B2C9 /* EventsDataSource.swift */,
-				437055BF1C21EFC400E9B2C9 /* Requests.swift */,
-				437055C11C2211DB00E9B2C9 /* Model.swift */,
+				437055D21C2474FC00E9B2C9 /* EventAnnotationFactory.swift */,
+				437055DB1C2475BD00E9B2C9 /* Requests */,
+				437055DA1C24759E00E9B2C9 /* Model */,
 				43D194951C21DFD400A3FDCE /* Main.storyboard */,
 				43D194981C21DFD400A3FDCE /* Assets.xcassets */,
 				43D1949A1C21DFD400A3FDCE /* LaunchScreen.storyboard */,
@@ -354,11 +382,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				437055C21C2211DB00E9B2C9 /* Model.swift in Sources */,
+				437055D51C24753300E9B2C9 /* Event.swift in Sources */,
+				437055D71C24753D00E9B2C9 /* Location.swift in Sources */,
+				437055D11C2474AA00E9B2C9 /* EventAnnotation.swift in Sources */,
 				437055CD1C23366A00E9B2C9 /* Map.swift in Sources */,
 				43D194911C21DFD400A3FDCE /* AppDelegate.m in Sources */,
+				437055D31C2474FC00E9B2C9 /* EventAnnotationFactory.swift in Sources */,
 				43D1948E1C21DFD400A3FDCE /* main.m in Sources */,
 				437055C01C21EFC400E9B2C9 /* Requests.swift in Sources */,
+				437055D91C24754B00E9B2C9 /* Address.swift in Sources */,
 				437055CF1C246D0A00E9B2C9 /* EventsDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

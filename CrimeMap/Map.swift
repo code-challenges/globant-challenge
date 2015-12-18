@@ -30,48 +30,6 @@ extension UIAlertController {
     }
 }
 
-class EventAnnotation : NSObject, MKAnnotation {
-    
-    let event : Event?
-    
-    var coordinate: CLLocationCoordinate2D {
-        get{
-            let latitude : Double = (event?.y)!
-            let longitude : Double = (event?.x)!
-            return CLLocationCoordinate2DMake(latitude, longitude)
-        }
-    }
-    
-    var title: String? {
-        get{
-            return String(self.event?.category)
-        }
-    }
-    
-    var subtitle: String? {
-        get {
-            return String(self.event?.date)
-        }
-    }
-    
-    init(event: Event?) {
-        self.event = event
-        super.init()
-    }
-    
-}
-
-class EventAnnotationFactory : NSObject {
-    static func getAnnotations(eventArray : EventArray) -> [EventAnnotation] {
-        var annotations = Array<EventAnnotation>()
-        for set in eventArray {
-            for event in set {
-                 annotations.append(EventAnnotation(event: event))
-            }
-        }
-        return annotations
-    }
-}
 
 class MapViewController : UIViewController, MKMapViewDelegate {
     
@@ -89,7 +47,6 @@ class MapViewController : UIViewController, MKMapViewDelegate {
         }
     }
     
-    
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? EventAnnotation {
             let identifier = "pin"
@@ -100,6 +57,7 @@ class MapViewController : UIViewController, MKMapViewDelegate {
             } else {
                 view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
+                view.pinTintColor = annotation.color
             }
             return view
         }
