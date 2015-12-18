@@ -12,7 +12,7 @@ import MapKit
 let sanFranciscoLocation = CLLocation(latitude: 37.7833, longitude: -122.4167)
 let regionRadius: CLLocationDistance = 10000
 let endpoint = "https://data.sfgov.org/resource/ritf-b9ki.json?"
-let colors = [0xFF0000, 0xEB3600, 0xe54800, 0xd86d00, 0xd27f00, 0xc5a300, 0xb9c800, 0xa6ff00]
+let colors = UIColor.colorsWithHexadecimalArray([0xFF0000, 0xEB3600, 0xe54800, 0xd86d00, 0xd27f00, 0xc5a300, 0xb9c800, 0xa6ff00])
 
 extension MKMapView {
     func centerMapOnLocation(location: CLLocation, radius: CLLocationDistance) {
@@ -32,6 +32,25 @@ extension UIColor {
     
     convenience init(hexadecimalNumber:Int) {
         self.init(red:(hexadecimalNumber >> 16) & 0xff, green:(hexadecimalNumber >> 8) & 0xff, blue:hexadecimalNumber & 0xff)
+    }
+    
+    static func colorsWithHexadecimalArray(hexadecimalArray : [Int]) -> [UIColor] {
+        var result = Array<UIColor>()
+        for hex in hexadecimalArray {
+            result.append(UIColor(hexadecimalNumber: hex))
+        }
+        return result
+    }
+}
+
+extension UIAlertController {
+    static func presentErrorMessage(error: NSError, viewController: UIViewController, title: String, actionTitle: String, handler: () -> ()) {
+        let alert = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+        let action = UIAlertAction(title: actionTitle, style: .Default) { (_) -> Void in
+            handler()
+        }
+        alert.addAction(action)
+        viewController.presentViewController(alert, animated: true, completion: nil)
     }
 }
 
@@ -66,15 +85,36 @@ class EventAnnotation : NSObject, MKAnnotation {
     
 }
 
-extension MapViewController: MKMapViewDelegate {
+class MapViewDataSource : NSObject {
+    
+    var eventsByDistrict = Dictionary<String, Array<Event>>()
+    
+    func performRequestToGetEvents() {
+        
+    }
+}
+
+    
+class MapViewController : UIViewController, MKMapViewDelegate {
+    
+    @IBOutlet weak var mapView: MKMapView!
+
+    var dataSource = MapViewDataSource()
+    
+    override func viewDidLoad() {
+        self.title = "CrimeMap"
+        mapView.centerMapOnLocation(sanFranciscoLocation, radius: regionRadius)
+        mapView.delegate = self
+//        self.performRequestToAddAnnotations()
+    }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? EventAnnotation {
             let identifier = "pin"
             var view: MKPinAnnotationView
             if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as? MKPinAnnotationView {
-                    dequeuedView.annotation = annotation
-                    view = dequeuedView
+                dequeuedView.annotation = annotation
+                view = dequeuedView
             } else {
                 view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
@@ -82,43 +122,5 @@ extension MapViewController: MKMapViewDelegate {
             return view
         }
         return nil
-    }
-}
-
-class MapViewController : UIViewController {
-    
-    @IBOutlet weak var mapView: MKMapView!
-    
-    override func viewDidLoad() {
-        self.title = "CrimeMap"
-        mapView.centerMapOnLocation(sanFranciscoLocation, radius: regionRadius)
-        mapView.delegate = self
-        self.performRequestToAddAnnotations()
-    }
-    
-    func performRequestToAddAnnotations() {
-        let requestManager = EventRequestManager(endpoint: endpoint, limitOfObjectsPerPage: 10, monthsBack: 1)
-        requestManager.performRequestOnPage(0) { [unowned self] (arrayOfEvents, error) -> () in
-            if (error != nil) {
-                let retryRequest = { () -> () in
-                    self.performRequestToAddAnnotations()
-                }
-                MapViewController.presentErrorMessage(error!, viewController: self, handler: retryRequest)
-                return
-            }
-            for event in arrayOfEvents {
-                let eventAnnotation = EventAnnotation(event: event)
-                self.mapView.addAnnotation(eventAnnotation)
-            }
-        }
-    }
-    
-    static func presentErrorMessage(error: NSError, viewController: UIViewController, handler: () -> () ) {
-        let alert = UIAlertController(title: "Sorry", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
-        let action = UIAlertAction(title: "Retry", style: .Default) { (_) -> Void in
-            handler()
-        }
-        alert.addAction(action)
-        viewController.presentViewController(alert, animated: true, completion: nil)
     }
 }
