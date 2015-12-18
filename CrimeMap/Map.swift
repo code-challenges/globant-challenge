@@ -34,6 +34,7 @@ extension UIAlertController {
 class MapViewDelegate : NSObject, MKMapViewDelegate {
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
         if let annotation = annotation as? EventAnnotation {
             let identifier = "pin"
             var view: MKPinAnnotationView
@@ -42,11 +43,11 @@ class MapViewDelegate : NSObject, MKMapViewDelegate {
                 view = dequeuedView
             } else {
                 view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                view.canShowCallout = true
             }
             view.pinTintColor = annotation.color
             return view
         }
+        
         return nil
     }
 }
@@ -62,14 +63,14 @@ class MapViewController : UIViewController {
         self.title = "CrimeMap"
         mapView.centerMapOnLocation(sanFranciscoLocation, radius: regionRadius)
         mapView.delegate = self.mapViewDelegate
-        self.loadItems()
+        self.showMoreAnnotationsOnMapView()
     }
     
-    @IBAction func refresh(sender: AnyObject) {
-        self.loadItems()
+    @IBAction func getMoreEventsAction(sender: AnyObject) {
+        self.showMoreAnnotationsOnMapView()
     }
     
-    func loadItems () {
+    func showMoreAnnotationsOnMapView () {
         LCCoolHUD.showLoading("Loading")
         self.dataSource.getMoreEvents { (eventArray, error) -> () in
             LCCoolHUD.hideInKeyWindow()
@@ -79,7 +80,9 @@ class MapViewController : UIViewController {
                 self.mapView.addAnnotations(annotations)
             }
             else {
-                LCCoolHUD.showFailure(error?.localizedDescription, inView: self.view, zoom: false, shadow: true)
+                UIAlertController.presentErrorMessage(error!, viewController: self, title: "Error", actionTitle: "Retry", handler: { () -> () in
+                    self.showMoreAnnotationsOnMapView()
+                })
             }
         }
     }
