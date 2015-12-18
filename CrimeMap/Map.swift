@@ -86,57 +86,111 @@ class EventAnnotation : NSObject, MKAnnotation {
 }
 
 typealias GetEventsHandler = EventRequestManagerCompletionHandler
-typealias DataSourceCompletedRetrievalFromPage = (EventsByDistrictDictionary, NSError?) -> ()
-typealias EventsByDistrictDictionary = Dictionary<String, Array<Event>>
+typealias DataSourceCompletedRetrievalFromPage = (ArrayOfSetsOfEvents, NSError?) -> ()
+typealias EventsByDistrictDictionary = Dictionary<String, Set<Event>>
+typealias ArrayOfSetsOfEvents = Array<Set<Event>>
 
-class MapViewDataSource : NSObject {
+
+class EventsDataSource : NSObject {
     
-    private var eventsByDistrict = EventsByDistrictDictionary()
+    private var events = Set<Event>()
+    
+    private var eventsByDistrictDictionary = EventsByDistrictDictionary()
+    
+    private var eventsByDistrict = ArrayOfSetsOfEvents()
+    
+    private var eventsBySharedEventsByDistrict = ArrayOfSetsOfEvents()
     
     private let requestManager = EventRequestManager(endpoint: endpoint, limitOfObjectsPerPage: 10, monthsBack: 10)
     
-    func performRequestToGetEventsOrderedByDistrict(page: Int, handler: DataSourceCompletedRetrievalFromPage ) {
+    func performRequestToGetEvents(page: Int, handler: DataSourceCompletedRetrievalFromPage ) {
         
-        self.requestManager.performRequestOnPage(page) { (events, error) -> () in
+        self.requestManager.performRequestOnPage(page) { [unowned self] (events, error) -> () in
             
             if (error != nil) {
-                handler(self.eventsByDistrict, error)
+                handler(self.eventsBySharedEventsByDistrict, error)
                 return;
             }
         
+            self.events = events
+            
             for event in events {
             
-                var eventsOfDistrict = self.eventsByDistrict[event.pddistrict!]
+                var eventsOfDistrict = self.eventsByDistrictDictionary[event.pddistrict!]
 
                 if eventsOfDistrict == nil {
                     eventsOfDistrict = [event]
                 } else {
-                    eventsOfDistrict?.append(event)
+                    eventsOfDistrict?.insert(event)
                 }
                 
-                self.eventsByDistrict[event.pddistrict!] = eventsOfDistrict
+                self.eventsByDistrictDictionary[event.pddistrict!] = eventsOfDistrict
             }
             
-            handler(self.eventsByDistrict, error)
+            
+            //Reset 
+            self.eventsByDistrict = ArrayOfSetsOfEvents()
+            
+            for (_, eventSet) in self.eventsByDistrictDictionary {
+                self.eventsByDistrict.append(eventSet)
+            }
+            
+            self.eventsByDistrict.sortInPlace({ (setA, setB) -> Bool in
+                return setA.count > setB.count
+            })
+            
+            //Reset
+            self.eventsBySharedEventsByDistrict = ArrayOfSetsOfEvents()
+            
+            var eventsBySharedNumberOfEventsInDistrict = Dictionary<String, Set<Event>>()
+            
+            for set in self.eventsByDistrict {
+                let numberOfEventsPerDistrict = String(set.count)
+                let setOnDictionary = eventsBySharedNumberOfEventsInDistrict[numberOfEventsPerDistrict]
+                if setOnDictionary != nil {
+                    let currentEventsInDictionary = setOnDictionary! as Set<Event>
+                    eventsBySharedNumberOfEventsInDistrict[numberOfEventsPerDistrict] = set.union(currentEventsInDictionary)
+                }
+                else{
+                      eventsBySharedNumberOfEventsInDistrict[numberOfEventsPerDistrict] = set
+                }
+            
+            }
+            
+            let sortedEventsBySharedNumberOfEventsInDistrict = eventsBySharedNumberOfEventsInDistrict.sort { $0.0 < $1.0 }
+
+            for (_, set) in sortedEventsBySharedNumberOfEventsInDistrict {
+                 self.eventsBySharedEventsByDistrict.append(set)
+            }
+            
+            handler(self.eventsBySharedEventsByDistrict, error)
         }
     }
+    
 }
 
-    
+
 class MapViewController : UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
 
-    var dataSource = MapViewDataSource()
+    var dataSource = EventsDataSource()
     
     override func viewDidLoad() {
         self.title = "CrimeMap"
         mapView.centerMapOnLocation(sanFranciscoLocation, radius: regionRadius)
         mapView.delegate = self
-        dataSource.performRequestToGetEventsOrderedByDistrict(0) { ( eventsByDistrictDictionary, error) -> () in
-            for district in eventsByDistrictDictionary {
-                print(district)
+        dataSource.performRequestToGetEvents(0) { (events, error) -> () in
+            print(events)
+            
+            
+            for eventSet in events {
+                let index = events.indexOf(eventSet)
+                let colorIndex = Int(Float(index! + 1) / Float(events.count) * Float(colors.count))
+                let color = colors.reverse()[colorIndex-1]
+                print(color)
             }
+    
         }
     }
     

@@ -31,7 +31,7 @@ private extension String {
     }
 }
 
-public typealias EventRequestManagerCompletionHandler = (Array<Event>, NSError?) -> ()
+public typealias EventRequestManagerCompletionHandler = (Set<Event>, NSError?) -> ()
 public typealias SODAAPIRequestManagerCompletionHandler = (Array<Dictionary<String,AnyObject>>, NSError?) -> ()
 
 class EventRequestManager : SODAAPIRequestManager {
@@ -46,16 +46,16 @@ class EventRequestManager : SODAAPIRequestManager {
     func performRequestOnPage(page: Int, completionHandler: EventRequestManagerCompletionHandler) {
         super.performRequestOnPage(page) { (array, error) -> () in
             if error != nil {
-                completionHandler(Array(), error)
+                completionHandler(Set(), error)
                 return
             }
             
-            var eventArray = Array<Event>()
+            var eventSet = Set<Event>()
             for dictionary in array {
                 let event = Event(dictionary: dictionary)
-                eventArray.append(event)
+                eventSet.insert(event)
             }
-            completionHandler(eventArray, error)
+            completionHandler(eventSet, error)
         }
     }
 }
