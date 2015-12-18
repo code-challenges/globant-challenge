@@ -28,7 +28,7 @@ class EventsDataSource : NSObject {
     
     var currentPage = 0
     
-    private let requestManager = EventRequestManager(endpoint: endpoint, limitOfObjectsPerPage: 100, monthsBack: 1)
+    private let requestManager = EventRequestManager(endpoint: endpoint, limitOfObjectsPerPage: 1, monthsBack: 1)
     
     func getMoreEvents(handler: DataSourceCompletedRetrievalFromPage) {
         self .performRequestToGetEvents(currentPage) { (arrayOfSetOfEvents, error) -> () in
