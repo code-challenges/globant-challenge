@@ -61,6 +61,17 @@ class EventAnnotation : NSObject, MKAnnotation {
     
 }
 
+class EventAnnotationFactory : NSObject {
+    static func getAnnotations(eventArray : EventArray) -> [EventAnnotation] {
+        var annotations = Array<EventAnnotation>()
+        for set in eventArray {
+            for event in set {
+                 annotations.append(EventAnnotation(event: event))
+            }
+        }
+        return annotations
+    }
+}
 
 class MapViewController : UIViewController, MKMapViewDelegate {
     
@@ -72,7 +83,10 @@ class MapViewController : UIViewController, MKMapViewDelegate {
         self.title = "CrimeMap"
         mapView.centerMapOnLocation(sanFranciscoLocation, radius: regionRadius)
         mapView.delegate = self
-        
+        self.dataSource.getMoreEvents { (eventArray, error) -> () in
+            let annotations = EventAnnotationFactory.getAnnotations(eventArray)
+            self.mapView.addAnnotations(annotations)
+        }
     }
     
     
